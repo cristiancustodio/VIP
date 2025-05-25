@@ -1,0 +1,53 @@
+﻿@inherits LayoutComponentBase
+
+<LeftSidebar ActivePage="@activePage" OnNavigate="HandleNavigation" />
+
+@Body
+
+<RightSidebar 
+    OnNotificationsClick="HandleNotifications"
+    OnPdfClick="HandlePdf"
+    OnPrintClick="HandlePrint"
+    OnEmailClick="HandleEmail"
+    OnCalculatorClick="HandleCalculator"
+    OnHelpClick="HandleHelp" />
+
+@code {
+    private string activePage = "Home";
+
+    private void HandleNavigation(string page)
+    {
+        activePage = page;
+        // Aqui você poderia implementar a navegação real usando NavigationManager
+    }
+
+    private void HandleNotifications()
+    {
+        // Implementação para lidar com notificações
+    }
+
+    private void HandlePdf()
+    {
+        // Implementação para lidar com geração de PDF
+    }
+
+    private void HandlePrint()
+    {
+        // Implementação para lidar com impressão
+    }
+
+    private void HandleEmail()
+    {
+        // Implementação para lidar com e-mail
+    }
+
+    private void HandleCalculator()
+    {
+        // Implementação para lidar com calculadora
+    }
+
+    private void HandleHelp()
+    {
+        // Implementação para lidar com ajuda
+    }
+}

@@ -1,0 +1,49 @@
+<div class="sidebar">
+    <div class="d-flex flex-column pt-4">
+        <a href="#" class="nav-link @(ActivePage == "Home" ? "active" : "")" @onclick="@(() => NavigateTo("Home"))">
+            <i class="bi bi-house-door sidebar-icon"></i>
+            <span class="sidebar-text">Início</span>
+        </a>
+        <a href="#" class="nav-link @(ActivePage == "Patients" ? "active" : "")" @onclick="@(() => NavigateTo("Patients"))">
+            <i class="bi bi-people sidebar-icon"></i>
+            <span class="sidebar-text">Pacientes</span>
+        </a>
+        <a href="#" class="nav-link @(ActivePage == "Appointments" ? "active" : "")" @onclick="@(() => NavigateTo("Appointments"))">
+            <i class="bi bi-calendar-check sidebar-icon"></i>
+            <span class="sidebar-text">Agendamentos</span>
+        </a>
+        <a href="#" class="nav-link @(ActivePage == "Records" ? "active" : "")" @onclick="@(() => NavigateTo("Records"))">
+            <i class="bi bi-file-earmark-text sidebar-icon"></i>
+            <span class="sidebar-text">Prontuários</span>
+        </a>
+        <a href="#" class="nav-link @(ActivePage == "Reports" ? "active" : "")" @onclick="@(() => NavigateTo("Reports"))">
+            <i class="bi bi-graph-up sidebar-icon"></i>
+            <span class="sidebar-text">Relatórios</span>
+        </a>
+        <a href="#" class="nav-link @(ActivePage == "Settings" ? "active" : "")" @onclick="@(() => NavigateTo("Settings"))">
+            <i class="bi bi-gear sidebar-icon"></i>
+            <span class="sidebar-text">Configurações</span>
+        </a>
+        
+        <div class="flex-grow-1"></div>
+        
+        <a href="#" class="nav-link mb-4 @(ActivePage == "Profile" ? "active" : "")" @onclick="@(() => NavigateTo("Profile"))">
+            <i class="bi bi-person-circle sidebar-icon"></i>
+            <span class="sidebar-text">Perfil</span>
+        </a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string ActivePage { get; set; } = "Home";
+    
+    [Parameter]
+    public EventCallback<string> OnNavigate { get; set; }
+    
+    private async Task NavigateTo(string page)
+    {
+        ActivePage = page;
+        await OnNavigate.InvokeAsync(page);
+    }
+}

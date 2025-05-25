@@ -1,0 +1,40 @@
+<div class="right-sidebar">
+    <div class="right-sidebar-icon" @onclick="OnNotificationsClick">
+        <i class="bi bi-bell"></i>
+    </div>
+    <div class="right-sidebar-icon" @onclick="OnPdfClick">
+        <i class="bi bi-file-earmark-pdf"></i>
+    </div>
+    <div class="right-sidebar-icon" @onclick="OnPrintClick">
+        <i class="bi bi-printer"></i>
+    </div>
+    <div class="right-sidebar-icon" @onclick="OnEmailClick">
+        <i class="bi bi-envelope"></i>
+    </div>
+    <div class="right-sidebar-icon" @onclick="OnCalculatorClick">
+        <i class="bi bi-calculator"></i>
+    </div>
+    <div class="right-sidebar-icon" @onclick="OnHelpClick">
+        <i class="bi bi-question-circle"></i>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback OnNotificationsClick { get; set; } = EventCallback.Empty;
+    
+    [Parameter]
+    public EventCallback OnPdfClick { get; set; } = EventCallback.Empty;
+    
+    [Parameter]
+    public EventCallback OnPrintClick { get; set; } = EventCallback.Empty;
+    
+    [Parameter]
+    public EventCallback OnEmailClick { get; set; } = EventCallback.Empty;
+    
+    [Parameter]
+    public EventCallback OnCalculatorClick { get; set; } = EventCallback.Empty;
+    
+    [Parameter]
+    public EventCallback OnHelpClick { get; set; } = EventCallback.Empty;
+}

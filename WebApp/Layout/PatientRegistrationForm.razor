@@ -1,0 +1,223 @@
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="form-container">
+                    <h2 class="form-title">Cadastro de Paciente</h2>
+                    <EditForm Model="@patientModel" OnValidSubmit="HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="nome" class="form-label">Nome Completo</label>
+                                <InputText id="nome" class="form-control" @bind-Value="patientModel.Nome" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="data_nascimento" class="form-label">Data de Nascimento</label>
+                                <InputDate id="data_nascimento" class="form-control" @bind-Value="patientModel.DataNascimento" required />
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="cpf" class="form-label">CPF</label>
+                                <InputText id="cpf" class="form-control" @bind-Value="patientModel.CPF" placeholder="000.000.000-00" required />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="rg" class="form-label">RG</label>
+                                <InputText id="rg" class="form-control" @bind-Value="patientModel.RG" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sexo" class="form-label">Sexo</label>
+                                <InputSelect id="sexo" class="form-select" @bind-Value="patientModel.Sexo" required>
+                                    <option value="" selected disabled>Selecione...</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                    <option value="O">Outro</option>
+                                </InputSelect>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <InputText id="email" class="form-control" @bind-Value="patientModel.Email" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="telefone" class="form-label">Telefone</label>
+                                <InputText id="telefone" class="form-control" @bind-Value="patientModel.Telefone" placeholder="(00) 00000-0000" required />
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                        <h5 class="section-title">Endereço</h5>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="cep" class="form-label">CEP</label>
+                                <InputText id="cep" class="form-control" @bind-Value="patientModel.CEP" placeholder="00000-000" @onblur="BuscarCEP" />
+                            </div>
+                            <div class="col-md-8">
+                                <label for="endereco" class="form-label">Endereço</label>
+                                <InputText id="endereco" class="form-control" @bind-Value="patientModel.Endereco" />
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="numero" class="form-label">Número</label>
+                                <InputText id="numero" class="form-control" @bind-Value="patientModel.Numero" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="complemento" class="form-label">Complemento</label>
+                                <InputText id="complemento" class="form-control" @bind-Value="patientModel.Complemento" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="bairro" class="form-label">Bairro</label>
+                                <InputText id="bairro" class="form-control" @bind-Value="patientModel.Bairro" />
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="cidade" class="form-label">Cidade</label>
+                                <InputText id="cidade" class="form-control" @bind-Value="patientModel.Cidade" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="estado" class="form-label">Estado</label>
+                                <InputSelect id="estado" class="form-select" @bind-Value="patientModel.Estado">
+                                    <option value="" selected disabled>Selecione...</option>
+                                    @foreach (var estado in estados)
+                                    {
+                                        <option value="@estado.Value">@estado.Key</option>
+                                    }
+                                </InputSelect>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                        <h5 class="section-title">Informações Médicas</h5>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="convenio" class="form-label">Convênio</label>
+                                <InputSelect id="convenio" class="form-select" @bind-Value="patientModel.ConvenioId">
+                                    <option value="" selected disabled>Selecione...</option>
+                                    @foreach (var convenio in convenios)
+                                    {
+                                        <option value="@convenio.Value">@convenio.Key</option>
+                                    }
+                                </InputSelect>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="num_carteira" class="form-label">Nº da Carteira</label>
+                                <InputText id="num_carteira" class="form-control" @bind-Value="patientModel.NumeroCarteira" />
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label for="alergias" class="form-label">Alergias</label>
+                                <InputTextArea id="alergias" class="form-control" @bind-Value="patientModel.Alergias" rows="2" />
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <label for="obs" class="form-label">Observações</label>
+                                <InputTextArea id="obs" class="form-control" @bind-Value="patientModel.Observacoes" rows="3" />
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-5">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary px-5 me-3">Cadastrar</button>
+                                <button type="button" class="btn btn-secondary px-5" @onclick="LimparFormulario">Limpar</button>
+                            </div>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private PatientModel patientModel = new PatientModel();
+    
+    private Dictionary<string, string> estados = new Dictionary<string, string>
+    {
+        {"Acre", "AC"},
+        {"Alagoas", "AL"},
+        {"Amapá", "AP"},
+        {"Amazonas", "AM"},
+        {"Bahia", "BA"},
+        {"Ceará", "CE"},
+        {"Distrito Federal", "DF"},
+        {"Espírito Santo", "ES"},
+        {"Goiás", "GO"},
+        {"Maranhão", "MA"},
+        {"Mato Grosso", "MT"},
+        {"Mato Grosso do Sul", "MS"},
+        {"Minas Gerais", "MG"},
+        {"Pará", "PA"},
+        {"Paraíba", "PB"},
+        {"Paraná", "PR"},
+        {"Pernambuco", "PE"},
+        {"Piauí", "PI"},
+        {"Rio de Janeiro", "RJ"},
+        {"Rio Grande do Norte", "RN"},
+        {"Rio Grande do Sul", "RS"},
+        {"Rondônia", "RO"},
+        {"Roraima", "RR"},
+        {"Santa Catarina", "SC"},
+        {"São Paulo", "SP"},
+        {"Sergipe", "SE"},
+        {"Tocantins", "TO"}
+    };
+    
+    private Dictionary<string, string> convenios = new Dictionary<string, string>
+    {
+        {"Unimed", "1"},
+        {"Amil", "2"},
+        {"Bradesco Saúde", "3"},
+        {"SulAmérica", "4"},
+        {"Particular", "5"},
+        {"Outro", "6"}
+    };
+    
+    private async Task BuscarCEP()
+    {
+        if (!string.IsNullOrWhiteSpace(patientModel.CEP) && patientModel.CEP.Length >= 8)
+        {
+            // Aqui você implementaria a integração com API de CEP como ViaCEP
+            // Este é apenas um exemplo demonstrativo
+            // var response = await httpClient.GetFromJsonAsync<CepResponse>($"https://viacep.com.br/ws/{patientModel.CEP}/json/");
+            // if (response != null)
+            // {
+            //     patientModel.Endereco = response.Logradouro;
+            //     patientModel.Bairro = response.Bairro;
+            //     patientModel.Cidade = response.Localidade;
+            //     patientModel.Estado = response.Uf;
+            // }
+        }
+    }
+    
+    private void LimparFormulario()
+    {
+        patientModel = new PatientModel();
+    }
+    
+    private void HandleValidSubmit()
+    {
+        // Aqui você implementaria a lógica para salvar o paciente no banco de dados
+        // Por exemplo:
+        // await PatientService.SavePatientAsync(patientModel);
+        
+        // Após salvar, você pode exibir uma mensagem de sucesso e limpar o formulário
+        // ou redirecionar para outra página
+        LimparFormulario();
+    }
+}
