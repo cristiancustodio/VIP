@@ -1,26 +1,20 @@
 ﻿@inherits LayoutComponentBase
 
-<LeftSidebar ActivePage="@activePage" OnNavigate="HandleNavigation" />
-
-@Body
-
-<RightSidebar 
-    OnNotificationsClick="HandleNotifications"
-    OnPdfClick="HandlePdf"
-    OnPrintClick="HandlePrint"
-    OnEmailClick="HandleEmail"
-    OnCalculatorClick="HandleCalculator"
-    OnHelpClick="HandleHelp" />
+<div class="page">
+    <LeftSidebar />
+    <main>
+        @Body
+    </main>
+    <RightSidebar 
+        OnNotificationsClick="HandleNotifications"
+        OnPdfClick="HandlePdf"
+        OnPrintClick="HandlePrint"
+        OnEmailClick="HandleEmail"
+        OnCalculatorClick="HandleCalculator"
+        OnHelpClick="HandleHelp" />
+</div>
 
 @code {
-    private string activePage = "Home";
-
-    private void HandleNavigation(string page)
-    {
-        activePage = page;
-        // Aqui você poderia implementar a navegação real usando NavigationManager
-    }
-
     private void HandleNotifications()
     {
         // Implementação para lidar com notificações

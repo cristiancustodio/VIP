@@ -1,49 +1,39 @@
 <div class="sidebar">
     <div class="d-flex flex-column pt-4">
-        <a href="#" class="nav-link @(ActivePage == "Home" ? "active" : "")" @onclick="@(() => NavigateTo("Home"))">
+        <NavLink href="/home" class="nav-link" activeClass="active">
             <i class="bi bi-house-door sidebar-icon"></i>
             <span class="sidebar-text">Início</span>
-        </a>
-        <a href="#" class="nav-link @(ActivePage == "Patients" ? "active" : "")" @onclick="@(() => NavigateTo("Patients"))">
+        </NavLink>
+        <NavLink href="/patients" class="nav-link" activeClass="active">
             <i class="bi bi-people sidebar-icon"></i>
             <span class="sidebar-text">Pacientes</span>
-        </a>
-        <a href="#" class="nav-link @(ActivePage == "Appointments" ? "active" : "")" @onclick="@(() => NavigateTo("Appointments"))">
+        </NavLink>
+        <NavLink href="/appointments" class="nav-link" activeClass="active">
             <i class="bi bi-calendar-check sidebar-icon"></i>
             <span class="sidebar-text">Agendamentos</span>
-        </a>
-        <a href="#" class="nav-link @(ActivePage == "Records" ? "active" : "")" @onclick="@(() => NavigateTo("Records"))">
+        </NavLink>
+        <NavLink href="/records" class="nav-link" activeClass="active">
             <i class="bi bi-file-earmark-text sidebar-icon"></i>
             <span class="sidebar-text">Prontuários</span>
-        </a>
-        <a href="#" class="nav-link @(ActivePage == "Reports" ? "active" : "")" @onclick="@(() => NavigateTo("Reports"))">
+        </NavLink>
+        <NavLink href="/reports" class="nav-link" activeClass="active">
             <i class="bi bi-graph-up sidebar-icon"></i>
             <span class="sidebar-text">Relatórios</span>
-        </a>
-        <a href="#" class="nav-link @(ActivePage == "Settings" ? "active" : "")" @onclick="@(() => NavigateTo("Settings"))">
+        </NavLink>
+        <NavLink href="/settings" class="nav-link" activeClass="active">
             <i class="bi bi-gear sidebar-icon"></i>
             <span class="sidebar-text">Configurações</span>
-        </a>
+        </NavLink>
         
         <div class="flex-grow-1"></div>
         
-        <a href="#" class="nav-link mb-4 @(ActivePage == "Profile" ? "active" : "")" @onclick="@(() => NavigateTo("Profile"))">
+        <NavLink href="/profile" class="nav-link mb-4" activeClass="active">
             <i class="bi bi-person-circle sidebar-icon"></i>
             <span class="sidebar-text">Perfil</span>
-        </a>
+        </NavLink>
     </div>
 </div>
 
 @code {
-    [Parameter]
-    public string ActivePage { get; set; } = "Home";
-    
-    [Parameter]
-    public EventCallback<string> OnNavigate { get; set; }
-    
-    private async Task NavigateTo(string page)
-    {
-        ActivePage = page;
-        await OnNavigate.InvokeAsync(page);
-    }
+    // Parâmetros e métodos de navegação removidos pois NavLink gerencia o estado ativo automaticamente
 }
