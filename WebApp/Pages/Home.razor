@@ -1,36 +1,18 @@
 ﻿@page "/home"
-
+@using WebApp.Pages
+@using WebApp // Garante que DashboardWidget está disponível
 
 <div class="main-content">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-xl-8">
-                <div class="form-container">
-                    <h2 class="form-title">XXX</h2>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>                    
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>                    
+                <h2 class="text-center">Dashboard Overview</h2>
+                <div class="row">
+                    <DashboardWidget Title="Audiometria no mês" Value="@audiometryExams" Icon="exams.svg" Tooltip="Número de exames de audiometria realizados neste mês" Color="bg-primary" />
+                    <DashboardWidget Title="Total de Receitas" Value="@totalReceipts.ToString("C")" Icon="receipts.svg" Tooltip="Total de receitas geradas" Color="bg-success" />
+                    <DashboardWidget Title="Total de Despesas" Value="@totalExpenses.ToString("C")" Icon="expenses.svg" Tooltip="Total de despesas do mês" Color="bg-danger" />
+                    <DashboardWidget Title="Saldo Atual" Value="@currentBalance.ToString("C")" Icon="balance.svg" Tooltip="Saldo financeiro atual" Color="bg-info" />
+                    <DashboardWidget Title="Exames Pendentes" Value="@pendingExams" Icon="pending.svg" Tooltip="Exames de audiometria pendentes" Color="bg-warning" />
                 </div>
             </div>
         </div>
@@ -38,5 +20,9 @@
 </div>
 
 @code {
-
+    private int audiometryExams = 120; // Exemplo
+    private decimal totalReceipts = 15000.00m; // Exemplo
+    private decimal totalExpenses = 5000.00m; // Exemplo
+    private decimal currentBalance = 10000.00m; // Exemplo
+    private int pendingExams = 5; // Exemplo
 }
