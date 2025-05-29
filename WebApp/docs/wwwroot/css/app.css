@@ -1,0 +1,272 @@
+:root {
+    --orange-btn: #FF7D1F;
+    --orange-btn-hover: #E86D15;
+    --orange-focus: rgba(255, 125, 31, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: transparent;
+        --container-bg: rgba(40, 40, 50, 0.7);
+        --sidebar-bg: rgba(30, 30, 40, 0.7);
+        --text-color: #FFFFFF;
+        --text-muted: #9DA3AF;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --input-bg: rgba(60, 60, 70, 0.5);
+        --hover-bg: rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: var(--input-bg);
+        --container-bg: rgba(250, 250, 252, 0.7);
+        --sidebar-bg: rgba(240, 240, 245, 0.7);
+        --text-color: #333333;
+        --text-muted: #666666;
+        --border-color: rgba(0, 0, 0, 0.1);
+        --input-bg: rgba(245, 245, 250, 0.8);
+        --hover-bg: rgba(0, 0, 0, 0.05);
+    }
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+.sidebar {
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    color: var(--text-color);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 60px;
+    transition: all 0.3s;
+    border-right: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.sidebar:hover {
+    width: 180px;
+}
+
+.sidebar .nav-link {
+    color: var(--text-muted);
+    padding: 12px 20px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    margin-left: 5px;
+    margin-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar .nav-link:hover {
+    color: var(--text-color);
+    background-color: var(--hover-bg);
+}
+
+.sidebar .nav-link.active {
+    color: var(--text-color);
+    background-color: var(--hover-bg);
+}
+
+.sidebar-icon {
+    margin-right: 12px;
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+.sidebar-text {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.sidebar:hover .sidebar-text {
+    opacity: 1;
+}
+
+.main-content {
+    background-color: transparent;
+    padding: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.form-container {
+    background-color: var(--container-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.form-title {
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-control, .form-select {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--input-bg);
+    border-color: var(--orange-btn);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.25rem var(--orange-focus);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.btn-primary {
+    background-color: var(--orange-btn);
+    border-color: var(--orange-btn);
+    color: white;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--orange-btn-hover);
+    border-color: var(--orange-btn-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 6px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--hover-bg);
+    border-color: var(--border-color);
+}
+
+hr {
+    border-color: var(--border-color);
+    opacity: 0.3;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.right-sidebar {
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    width: 60px;
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.right-sidebar-icon {
+    margin-bottom: 15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+.right-sidebar-icon:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.right-sidebar-icon i {
+    font-size: 1.3rem;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sidebar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Esta classe garante que o texto dos inputs será visível */
+.form-select option {
+    background-color: var(--container-bg);
+    color: var(--text-color);
+}
+
+/* Estilos para mensagens de validação */
+.validation-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Estilos para o Blazor Error UI */
+#blazor-error-ui {
+    background: #ffffe0;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
