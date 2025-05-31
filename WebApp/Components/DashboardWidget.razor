@@ -14,9 +14,9 @@
 </div>
 
 @code {
-    [Parameter] public string Title { get; set; }
-    [Parameter] public object Value { get; set; }
-    [Parameter] public string Icon { get; set; }
-    [Parameter] public string Tooltip { get; set; }
-    [Parameter] public string Color { get; set; } = "bg-primary";
+    [Parameter] public required string Title { get; set; }
+    [Parameter] public required object Value { get; set; }
+    [Parameter] public required string Icon { get; set; }
+    [Parameter] public required string Tooltip { get; set; }
+    [Parameter] public required string Color { get; set; } = "bg-primary";
 }

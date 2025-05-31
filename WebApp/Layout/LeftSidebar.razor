@@ -8,10 +8,27 @@
             <i class="bi bi-people sidebar-icon"></i>
             <span class="sidebar-text">Pacientes</span>
         </NavLink>
-        <NavLink href="/appointments" class="nav-link" activeClass="active">
-            <i class="bi bi-calendar-check sidebar-icon"></i>
-            <span class="sidebar-text">Agendamentos</span>
-        </NavLink>
+        <!-- Parâmetros com submenu -->
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="parametrosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-sliders sidebar-icon"></i>
+                <span class="sidebar-text">Parâmetros</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="parametrosDropdown">
+                <li>
+                    <NavLink href="/audiometer" class="dropdown-item" activeClass="active">
+                        <i class="bi bi-ear sidebar-icon"></i>
+                        Audiômetro
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink href="/tiposdecontato" class="dropdown-item" activeClass="active">
+                        <i class="bi bi- sidebar-icon"></i>
+                        Tipos de Contato
+                    </NavLink>
+                </li>                
+            </ul>
+        </div>
         <NavLink href="/records" class="nav-link" activeClass="active">
             <i class="bi bi-file-earmark-text sidebar-icon"></i>
             <span class="sidebar-text">Prontuários</span>

@@ -1,0 +1,65 @@
+@page "/audiometer"
+@using System.ComponentModel.DataAnnotations
+@using WebApp.Model
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="form-container">
+                    <h2 class="form-title">Cadastro de Audiômetro</h2>
+                    <EditForm Model="@audiometer" OnValidSubmit="HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="descricao" class="form-label">Descrição</label>
+                                <InputText id="descricao" class="form-control" @bind-Value="audiometer.Descricao" required />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="dataCalibracao" class="form-label">Data de Calibração</label>
+                                <InputDate id="dataCalibracao" class="form-control" @bind-Value="audiometer.DataCalibracao" required />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="dataAfericao" class="form-label">Data de Aferição</label>
+                                <InputDate id="dataAfericao" class="form-control" @bind-Value="audiometer.DataAfericao" required />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary px-5 me-3">Cadastrar</button>
+                                <button type="button" class="btn btn-secondary px-5" @onclick="LimparFormulario">Limpar</button>
+                            </div>
+                        </div>
+                    </EditForm>
+                    @if (successMessage != null)
+                    {
+                        <div class="alert alert-success mt-3">@successMessage</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private AudiometerModel audiometer = new AudiometerModel();
+    private string? successMessage;
+
+    private void LimparFormulario()
+    {
+        audiometer = new AudiometerModel();
+    }
+
+    private void HandleValidSubmit()
+    {
+        // Aqui você pode salvar no banco de dados ou outra lógica
+
+        // Aqui você implementaria a lógica para salvar o paciente no banco de dados
+        // Por exemplo:
+        // await AudiometerService.SavePatientAsync(patientModel);
+
+        successMessage = "Audiômetro cadastrado com sucesso!";
+        LimparFormulario();
+    }
+}
