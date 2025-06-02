@@ -1,6 +1,7 @@
 @page "/audiometer"
 @using System.ComponentModel.DataAnnotations
 @using WebApp.Model
+@using Microsoft.AspNetCore.Components.Forms
 
 <div class="main-content">
     <div class="container-fluid">
@@ -21,11 +22,13 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="dataCalibracao" class="form-label">Data de Calibração</label>
-                                <InputDate id="dataCalibracao" class="form-control" @bind-Value="audiometer.DataCalibracao" required />
+                                <InputDate id="dataCalibracao" class="form-control" @bind-Value="audiometer.DataCalibracao" />
+                                <ValidationMessage For="@(() => audiometer.DataCalibracao)" />
                             </div>
                             <div class="col-md-3">
                                 <label for="dataAfericao" class="form-label">Data de Aferição</label>
-                                <InputDate id="dataAfericao" class="form-control" @bind-Value="audiometer.DataAfericao" required />
+                                <InputDate id="dataAfericao" class="form-control" @bind-Value="audiometer.DataAfericao" />
+                                <ValidationMessage For="@(() => audiometer.DataAfericao)" />
                             </div>
                         </div>
                         <div class="row mt-5">
