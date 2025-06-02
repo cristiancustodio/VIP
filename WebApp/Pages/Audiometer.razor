@@ -8,7 +8,10 @@
             <div class="col-lg-10 col-xl-8">
                 <div class="form-container">
                     <h2 class="form-title">Cadastro de Audiômetro</h2>
-                    <EditForm Model="@audiometer" OnValidSubmit="HandleValidSubmit">
+                    <EditForm Model="@audiometer"
+                              OnValidSubmit="HandleValidSubmit"
+                              OnInvalidSubmit="HandleInvalidSubmit"
+                              ValidationMode="ValidationMode.OnFieldChanged">
                         <DataAnnotationsValidator />
                         <ValidationSummary />
                         <div class="row mb-4">
@@ -61,5 +64,12 @@
 
         successMessage = "Audiômetro cadastrado com sucesso!";
         LimparFormulario();
+    }
+
+    private void HandleInvalidSubmit()
+    {
+        // Limpa mensagem de sucesso e força atualização do sumário
+        successMessage = null;
+        StateHasChanged();
     }
 }
